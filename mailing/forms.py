@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import CheckboxInput, Select
 
-from mailing.models import Newsletter
+from mailing.models import Newsletter, Client
 
 
 class BootstrapFormStyleMixin:
@@ -19,6 +19,12 @@ class BootstrapFormStyleMixin:
                 field.widget.attrs['class'] = 'form-select'
             else:
                 field.widget.attrs['class'] = 'form-control'
+
+
+class ClientForm(BootstrapFormStyleMixin, forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = '__all__'
 
 
 class NewsletterForm(BootstrapFormStyleMixin, forms.ModelForm):

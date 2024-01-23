@@ -1,8 +1,14 @@
 <footer class="text-body-secondary py-5">
     <div class="container">
-        <p class="float-end mb-1">
-            <a href="#">Back to top</a>
-        </p>
+
+        <h3 class="btn btn-outline-success me-2">
+            <a href="{% url 'mailing:client_create' %}">Become a client</a>
+        </h3>
+
+        <h3 class="btn btn-outline-success me-2">
+            <a href="{% url 'mailing:client_list' %}">All clients</a>
+        </h3>
+
         <p class="mb-1">NewsLetter Service &copy; {% now 'Y' %}</p>
         <a href="/">Return Home</a>
     </div>
