@@ -1,0 +1,23 @@
+{% extends 'mailing/base.html' %}
+
+{% block content_block %}
+
+<div class="row">
+    <div class="col-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{object.theme_massage}}</h5>
+                <h5 class="card-title">{{object.send_time}}</h5>
+                <p class="card-text">{{object.period}}</p>
+                <p class="card-text"><small class="text-body-secondary">{{object.status}}</small></p>
+                <p class="card-text"><small class="text-body-secondary">{{object.user}}</small></p>
+                <p class="card-text"><small class="text-body-secondary">{{object.clients}}</small></p>
+                <a href="{% url 'mailing:newsletter_delete' pk=object.pk %}" class="btn btn-danger">
+                    Delete
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
