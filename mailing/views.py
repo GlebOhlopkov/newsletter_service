@@ -3,8 +3,24 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
-from mailing.forms import NewsletterForm
-from mailing.models import Newsletter
+from mailing.forms import NewsletterForm, ClientForm
+from mailing.models import Newsletter, Client, LogNewsletter
+
+
+class ClientCreateView(CreateView):
+    model = Client
+    form_class = ClientForm
+    success_url = reverse_lazy('mailing:newsletter_list')
+
+
+class ClientListView(ListView):
+    model = Client
+
+
+class NewsletterCreateView(CreateView):
+    model = Newsletter
+    form_class = NewsletterForm
+    success_url = reverse_lazy('mailing:newsletter_list')
 
 
 class NewsletterListView(ListView):
@@ -13,12 +29,6 @@ class NewsletterListView(ListView):
 
 class NewsletterDetailView(DetailView):
     model = Newsletter
-
-
-class NewsletterCreateView(CreateView):
-    model = Newsletter
-    form_class = NewsletterForm
-    success_url = reverse_lazy('mailing:newsletter_list')
 
 
 class NewsletterUpdateView(UpdateView):
@@ -31,3 +41,6 @@ class NewsletterDeleteView(DeleteView):
     model = Newsletter
     success_url = reverse_lazy('mailing:newsletter_list')
 
+
+class LogNewsletterDetailView(DetailView):
+    model = LogNewsletter

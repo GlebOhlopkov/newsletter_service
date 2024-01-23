@@ -1,0 +1,21 @@
+{% extends 'mailing/base.html' %}
+
+{% block content_block %}
+
+<div class="row">
+    {% for client in client_list %}
+    <div class="card mb-3 col-4" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{client.email}}</h5>
+                    <h3 class="card-title">{{client.name}}</h3>
+                    <p class="card-text">{{client.comment}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
