@@ -11,7 +11,7 @@
                 <p class="card-text">{{object.period}}</p>
                 <p class="card-text"><small class="text-body-secondary">{{object.status}}</small></p>
                 <p class="card-text"><small class="text-body-secondary">{{object.user}}</small></p>
-                <p class="card-text"><small class="text-body-secondary">{{object.clients}}</small></p>
+                <p class="card-text"><small class="text-body-secondary">{{object.clients.all}}</small></p>
                 <a href="{% url 'mailing:newsletter_delete' pk=object.pk %}" class="btn btn-danger">
                     Delete
                 </a>

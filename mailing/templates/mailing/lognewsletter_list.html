@@ -1,0 +1,21 @@
+{% extends 'mailing/base.html' %}
+
+{% block content_block %}
+
+<div class="row">
+    {% for lognewsletter in lognewsletter_list %}
+    <div class="card mb-3 col-4" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{newsletter.datetime_send}}</h5>
+                    <h3 class="card-title"> {{newsletter.status}}</h3>
+                    <h3 class="card-text">{{newsletter.server_answer}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

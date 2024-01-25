@@ -15,7 +15,7 @@
                         {{newsletter.user|default:"Nobody"}} </small></p>
                     <a href="{% url 'mailing:newsletter_view' pk=newsletter.pk %}" class="btn btn-primary" tabindex="-1"
                        role="button" aria-disabled="true">Newsletter info</a>
-                    <a href="{% url 'mailing:lognewsletter_view' pk=newsletter.pk %}" class="btn btn-secondary" tabindex="-1"
+                    <a href="{% url 'mailing:lognewsletter_list' pk=newsletter.pk %}" class="btn btn-secondary" tabindex="-1"
                        role="button" aria-disabled="true">Newsletter Log</a>
                 </div>
             </div>
