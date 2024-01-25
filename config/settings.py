@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_crontab',
     'mailing',
     'users',
 ]
@@ -125,6 +126,19 @@ STATICFILES_DIRS = (BASE_DIR / 'static',)
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRONJOBS = [
+    ('*/10 * * * *', 'mailing.cron.start_newsletter_in_work'),
+    ('0 12 * * *', 'mailing.cron.send_newsletter_per_day'),
+    ('0 12 * * 1', 'mailing.cron.send_newsletter_per_week'),
+    ('0 12 1 * *', 'mailing.cron.send_newsletter_per_month')
+]
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = '465'
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 AUTH_USER_MODEL = 'users.User'
 LOGOUT_REDIRECT_URL = '/'
