@@ -41,6 +41,12 @@ class Newsletter(models.Model):
     class Meta:
         verbose_name = 'newsletter'
         verbose_name_plural = 'newsletters'
+        permissions = [
+            (
+                'moderator_view',
+                'Moderator can view any newsletter'
+            )
+        ]
 
 
 class LogNewsletter(models.Model):

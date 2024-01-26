@@ -30,4 +30,4 @@ class ClientForm(BootstrapFormStyleMixin, forms.ModelForm):
 class NewsletterForm(BootstrapFormStyleMixin, forms.ModelForm):
     class Meta:
         model = Newsletter
-        fields = '__all__'
+        fields = ('theme_massage', 'text_massage', 'send_time', 'period', 'status', 'clients',)
