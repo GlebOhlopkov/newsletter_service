@@ -8,9 +8,10 @@
         <div class="row g-0">
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title">{{newsletter.send_time}}</h5>
-                    <h3 class="card-title"> {{newsletter.theme_massage}}</h3>
-                    <p class="card-text">{{newsletter.status}}</p>
+                    <h2 class="card-title">Theme: {{newsletter.theme_massage}}</h2>
+                    <h3 class="card-title">Start of send: {{newsletter.send_time_start}}</h3>
+                    <h5 class="card-text">Status: {{newsletter.status}}</h5>
+                    <h5 class="card-text">Last time send: {{newsletter.last_send_time}}</h5>
                     <p class="card-text"><small class="text-body-secondary">Created by:
                         {{newsletter.user|default:"Nobody"}} </small></p>
                     <a href="{% url 'mailing:newsletter_view' pk=newsletter.pk %}" class="btn btn-primary" tabindex="-1"

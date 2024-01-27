@@ -29,9 +29,11 @@ class Newsletter(models.Model):
     ]
     theme_massage = models.CharField(max_length=50, verbose_name='theme')
     text_massage = models.TextField(verbose_name='text')
-    send_time = models.TimeField(verbose_name='newsletter time')
+    send_time_start = models.DateTimeField(verbose_name='newsletter send time start')
+    send_time_finish = models.DateTimeField(verbose_name='newsletter send time finish')
     period = models.CharField(choices=PERIOD_CHOICES, verbose_name='period')
     status = models.CharField(choices=STATUS_CHOICES, default='CREATE', verbose_name='status')
+    last_send_time = models.DateTimeField(null=True, blank=True, verbose_name='last try to send')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='user')
     clients = models.ManyToManyField(Client, verbose_name='clients')
 
@@ -50,10 +52,10 @@ class Newsletter(models.Model):
 
 
 class LogNewsletter(models.Model):
-    datetime_send = models.DateTimeField(blank=True, null=True, verbose_name='last datetime send')
+    datetime_send = models.DateTimeField(blank=True, null=True, verbose_name='newsletter send time')
     status = models.CharField(blank=True, null=True, verbose_name='send status')
     server_answer = models.CharField(blank=True, null=True, verbose_name='server status')
-    newsletter = models.ForeignKey(Newsletter, on_delete=models.DO_NOTHING, verbose_name='newsletter')
+    newsletter = models.IntegerField(verbose_name='newsletter id')
 
     def __str__(self):
         return f'{self.datetime_send}: {self.status}'

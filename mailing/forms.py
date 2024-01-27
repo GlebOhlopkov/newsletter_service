@@ -28,6 +28,10 @@ class ClientForm(BootstrapFormStyleMixin, forms.ModelForm):
 
 
 class NewsletterForm(BootstrapFormStyleMixin, forms.ModelForm):
+    send_time_start = forms.DateTimeField(input_formats=['%d/%m/%y %H:%M'])
+    send_time_finish = forms.DateTimeField(input_formats=['%d/%m/%y %H:%M'])
+
     class Meta:
         model = Newsletter
-        fields = ('theme_massage', 'text_massage', 'send_time', 'period', 'status', 'clients',)
+        fields = ('theme_massage', 'text_massage', 'send_time_start',
+                  'send_time_finish', 'period', 'status', 'clients',)

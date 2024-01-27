@@ -6,9 +6,11 @@
     <div class="col-6">
         <div class="card mb-3">
             <div class="card-body">
-                <h5 class="card-title">{{object.theme_massage}}</h5>
-                <h5 class="card-title">{{object.send_time}}</h5>
-                <p class="card-text">{{object.period}}</p>
+                <h1 class="card-title">Theme: {{newsletter.theme_massage}}</h1>
+                <h2 class="card-text">Massage: {{object.theme_massage}}</h2>
+                <h4 class="card-title">Send start: {{newsletter.send_time_start}}</h4>
+                <h5 class="card-text">Last time send: {{newsletter.last_send_time}}</h5>
+                <p class="card-text"><small class="text-body-secondary">{{object.period}}</small></p>
                 <p class="card-text"><small class="text-body-secondary">{{object.status}}</small></p>
                 <p class="card-text"><small class="text-body-secondary">{{object.user}}</small></p>
                 <p class="card-text"><small class="text-body-secondary">{{object.clients.all}}</small></p>
