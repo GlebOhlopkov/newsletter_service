@@ -9,7 +9,8 @@ class ClientAdmin(admin.ModelAdmin):
 
 @admin.register(Newsletter)
 class NewsletterAdmin(admin.ModelAdmin):
-    list_display = ('id', 'theme_massage', 'text_massage', 'send_time', 'period', 'status', 'user', )
+    list_display = ('id', 'theme_massage', 'text_massage', 'send_time_start',
+                    'send_time_finish', 'period', 'status', 'user',)
 
 
 @admin.register(LogNewsletter)

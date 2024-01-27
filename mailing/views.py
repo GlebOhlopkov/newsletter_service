@@ -3,12 +3,14 @@ from django.core.mail import send_mail
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-
 from config import settings
 from mailing.forms import NewsletterForm, ClientForm
 from mailing.models import Newsletter, Client, LogNewsletter
 
-from datetime import datetime
+from datetime import datetime, timezone
+
+
+from mailing.services import send_newsletter_now
 
 
 class ClientCreateView(LoginRequiredMixin, CreateView):
@@ -30,16 +32,8 @@ class NewsletterCreateView(LoginRequiredMixin, CreateView):
         newsletter = form.save(commit=False)
         newsletter.user = self.request.user
         newsletter.save()
-        time = datetime.now().time()
-        if time >= newsletter.send_time:
-            clients = newsletter.clients.all()
-            for client in clients:
-                send_mail(
-                    subject=f'{newsletter.theme_massage}',
-                    message=f'{newsletter.text_massage}',
-                    from_email=settings.EMAIL_HOST_USER,
-                    recipient_list=[client.email]
-                )
+        time = datetime.now(tz=timezone.utc)
+        send_newsletter_now(newsletter, time)
         return super().form_valid(form)
 
 
