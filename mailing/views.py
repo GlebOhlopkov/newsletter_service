@@ -1,14 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.mail import send_mail
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from config import settings
 from mailing.forms import NewsletterForm, ClientForm
 from mailing.models import Newsletter, Client, LogNewsletter
-
-from datetime import datetime, timezone
-
 
 from mailing.services import send_newsletter_now
 
@@ -32,8 +27,7 @@ class NewsletterCreateView(LoginRequiredMixin, CreateView):
         newsletter = form.save(commit=False)
         newsletter.user = self.request.user
         newsletter.save()
-        time = datetime.now(tz=timezone.utc)
-        send_newsletter_now(newsletter, time)
+        send_newsletter_now(newsletter)
         return super().form_valid(form)
 
 
