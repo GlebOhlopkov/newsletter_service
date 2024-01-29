@@ -1,0 +1,22 @@
+{% extends 'mailing/base.html' %}
+
+{% block content_block %}
+
+<div class="row">
+    <div class="card">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token%}
+            {{ form.as_p }}
+            <button type="submit" class="text-body-secondary">
+                {% if object %}
+                    Save
+                {% else %}
+                    Create
+                {% endif %}
+            </button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

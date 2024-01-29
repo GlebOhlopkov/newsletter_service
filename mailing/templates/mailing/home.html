@@ -1,0 +1,56 @@
+{% extends 'mailing/base.html' %}
+
+{% block content_block %}
+
+<div class="row">
+    <div class="card mb-3 col-4" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-text">Newsletter total: {{newsletter_list}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3 col-4" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-text">Newsletter in work: {{newsletter_in_work}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3 col-4" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-text">Clients total: {{client_list}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {% for blog in blog_list %}
+    <div class="card mb-3 col-4" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-3">
+                <img src="/media/{{object.image}}" class="rounded float-start "
+                     style="width: 6rem" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{blog.title}}</h5>
+                    <p class="card-text">{{blog.text}}</p>
+                    <p class="card-text"><small class="text-body-secondary">Published: {{blog.published_at}}</small></p>
+                    <p class="card-text"><small class="text-body-secondary">Views: {{blog.views_count}}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
