@@ -1,0 +1,17 @@
+{% extends 'mailing/base.html' %}
+
+{% block content_block %}
+
+<div class="card mb-3">
+    <img src="/media/{{object.image}}" class="rounded float-start " style="width: 6rem" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Title: {{object.title}}</h5>
+        <p class="card-text">{{object.text}}</p>
+        <p class="card-text"><small class="text-body-secondary">Published: {{object.published_at}}</small></p>
+        <p class="card-text"><small class="text-body-secondary">Views: {{object.views_count}}</small></p>
+        <a href="{% url 'blog:blog_edit' object.pk %}" class="btn btn-secondary" tabindex="-1"
+           role="button" aria-disabled="true">Update info</a>
+    </div>
+</div>
+
+{% endblock %}

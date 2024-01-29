@@ -1,7 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
+from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+
+from blog.models import Blog
 from mailing.forms import NewsletterForm, ClientForm
 from mailing.models import Newsletter, Client, LogNewsletter
 
@@ -74,3 +78,20 @@ class LogNewsletterListView(LoginRequiredMixin, ListView):
         queryset = super().get_queryset()
         queryset = queryset.filter(newsletter_id=self.kwargs.get('pk'))
         return queryset
+
+
+class HomeView(View):
+    model1 = Newsletter
+    model2 = Blog
+    model3 = Client
+    template_name = 'mailing/home.html'
+    context = {}
+
+    def get(self, request, *args, **kwargs):
+        self.context = {
+            'newsletter_list' : self.model1.objects.all().count(),
+            'newsletter_in_work': self.model1.objects.filter(status='IN_WORK').count(),
+            'blog_list': self.model2.objects.all().order_by('-id')[:3],
+            'client_list': self.model3.objects.all().count(),
+        }
+        return render(request, template_name=self.template_name, context=self.context)

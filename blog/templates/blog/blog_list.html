@@ -1,0 +1,34 @@
+{% extends 'mailing/base.html' %}
+
+{% block content_block %}
+
+<a class="btn btn-primary mb-3" href="{% url 'blog:blog_create' %}" role="button">Add Blog</a>
+
+<div class="row">
+    {% for object in object_list %}
+    <div class="card mb-3 col-4" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-3">
+                <img src="/media/{{object.image}}" class="rounded float-start "
+                     style="width: 6rem" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{object.title}}</h5>
+                    <p class="card-text">{{object.text}}</p>
+                    <p class="card-text"><small class="text-body-secondary">Published: {{object.published_at}}</small></p>
+                    <p class="card-text"><small class="text-body-secondary">Views: {{object.views_count}}</small></p>
+                    <a href="{% url 'blog:blog_detail' object.pk %}" class="btn btn-secondary" tabindex="-1"
+                       role="button" aria-disabled="true">Open</a>
+                    <a href="{% url 'blog:blog_edit' object.pk %}" class="btn btn-secondary" tabindex="-1"
+                       role="button" aria-disabled="true">Edit</a>
+                    <a href="{% url 'blog:blog_delete' object.pk %}" class="btn btn-secondary" tabindex="-1"
+                       role="button" aria-disabled="true">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
