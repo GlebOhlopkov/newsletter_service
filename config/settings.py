@@ -135,10 +135,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRONJOBS = [
-    ('*/10 * * * *', 'mailing.cron.start_newsletter_in_work'),
-    ('0 12 * * *', 'mailing.cron.send_newsletter_per_day'),
-    ('0 12 * * 1', 'mailing.cron.send_newsletter_per_week'),
-    ('0 12 1 * *', 'mailing.cron.send_newsletter_per_month')
+    ('*/5 * * * *', 'mailing.cron.start_newsletter_in_work'),
+    ('*/5 * * * *', 'mailing.cron.send_newsletter')
 ]
 
 EMAIL_HOST = 'smtp.yandex.ru'
