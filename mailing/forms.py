@@ -35,3 +35,10 @@ class NewsletterForm(BootstrapFormStyleMixin, forms.ModelForm):
         model = Newsletter
         fields = ('theme_massage', 'text_massage', 'send_time_start',
                   'send_time_finish', 'period', 'status', 'clients',)
+
+
+class NewsletterModeratorForm(BootstrapFormStyleMixin, forms.ModelForm):
+
+    class Meta:
+        model = Newsletter
+        fields = ('status', )

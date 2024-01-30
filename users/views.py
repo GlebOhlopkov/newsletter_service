@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.views import View
-from django.views.generic import CreateView, UpdateView, TemplateView
+from django.views.generic import CreateView, UpdateView, TemplateView, ListView
 
 from users.forms import UserRegisterForm, UserForm
 from users.models import User
@@ -80,3 +80,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class UserModerList(LoginRequiredMixin, ListView):
+    model = User
