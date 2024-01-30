@@ -1,6 +1,7 @@
 from django.urls import path
 
-from users.views import LoginView, LogoutView, UserUpdateView, RegisterView, EmailConfirmView, UserConfirmEmailView
+from users.views import LoginView, LogoutView, UserUpdateView, RegisterView, EmailConfirmView, UserConfirmEmailView, \
+    UserModerList
 
 app_name = 'users'
 urlpatterns = [
@@ -10,4 +11,5 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('confirm_register/', EmailConfirmView.as_view(), name='confirm_register'),
     path('confirm_email/<str:uidb64>/<str:token>/', UserConfirmEmailView.as_view(), name='confirm_email'),
+    path('user_moder_list/', UserModerList.as_view(), name='user_list')
 ]

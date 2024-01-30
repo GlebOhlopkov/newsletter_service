@@ -6,7 +6,7 @@ from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 
 from blog.models import Blog
-from mailing.forms import NewsletterForm, ClientForm
+from mailing.forms import NewsletterForm, ClientForm, NewsletterModeratorForm
 from mailing.models import Newsletter, Client, LogNewsletter
 
 from mailing.services import send_newsletter_now
@@ -60,6 +60,13 @@ class NewsletterUpdateView(LoginRequiredMixin, UpdateView):
         if self.object.user != self.request.user:
             raise Http404("Sorry, you don't owner of this product")
         return self.object
+
+
+class NewsletterModeratorUpdateView(LoginRequiredMixin, UpdateView):
+    model = Newsletter
+    form_class = NewsletterModeratorForm
+    success_url = reverse_lazy('mailing:newsletter_list')
+    template_name = 'mailing/newsletter_moderator_form.html'
 
 
 class NewsletterDeleteView(LoginRequiredMixin, DeleteView):
